@@ -989,7 +989,7 @@ def _json_schema_to_python_type(schema: Any, defs) -> str:
             if n != "$defs"
         ]
 
-        if "additionalProperties" in schema:
+        if isinstance(schema, dict) and "additionalProperties" in schema:
             additional_properties = schema["additionalProperties"]
             if isinstance(additional_properties, bool) and additional_properties:
                 des += ["str, Any"]
