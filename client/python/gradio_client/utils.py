@@ -895,11 +895,11 @@ class APIInfoParseError(ValueError):
 
 
 def get_type(schema: dict):
-    if "const" in schema:
+    if isinstance(schema, dict) and "const" in schema:
         return "const"
-    if "enum" in schema:
+    if isinstance(schema, dict) and "enum" in schema:
         return "enum"
-    elif "type" in schema:
+    elif isinstance(schema, dict) and "type" in schema:
         return schema["type"]
     elif schema.get("$ref"):
         return "$ref"
